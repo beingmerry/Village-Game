@@ -2,10 +2,10 @@
 Game assets and other web UI objects will go here.
 # Current inventory
 1. ❌ dirt_tile_16x16.png
-   ❌ grass_tile_16x16.png
-2. ❌ house_left_16x16.png
-3. ❌ house_right_16x16.png
-4. ❌ tree_16x16.png
+2. ❌ grass_tile_16x16.png
+3. ❌ house_left_16x16.png
+4. ❌ house_right_16x16.png
+5. ❌ tree_16x16.png
    1. ❌ tree_chopped_16x16.png
 6. ❌ food_16x16.png
    1. ❌ food_stored_16x16.png 
