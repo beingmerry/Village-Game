@@ -69,3 +69,17 @@ const drawHouse = tiles => {
 const loop = () => {}
 // ⌛ Wait till document is loaded to initialize
 document.addEventListener('DOMContentLoaded', init)
+// 🖼️ Loading all images with a promise
+// https://stackoverflow.com/questions/11071314/javascript-execute-after-all-images-have-loaded
+Promise.all(
+  Array.from(document.images)
+    .filter(img => !img.complete)
+    .map(
+      img =>
+        new Promise(resolve => {
+          img.onload = img.onerror = resolve
+        })
+    )
+).then(() => {
+  console.log('images finished loading')
+})
