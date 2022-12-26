@@ -4,7 +4,7 @@ Game assets and other web UI objects will go here.
 1. ✅ dirt_tile_16x16.png
 2. ✅ grass_tile_16x16.png
 3. ✅ house_32x32.png
-4. ❌ tree_16x16.png
+4. ✅ tree_16x16.png
    1. ❌ tree_chopped_16x16.png
 5. ❌ food_16x16.png
    1. ❌ food_stored_16x16.png 
