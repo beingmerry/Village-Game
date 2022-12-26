@@ -73,15 +73,13 @@ const loop = () => {}
 // https://stackoverflow.com/questions/11071314/javascript-execute-after-all-images-have-loaded
 // ⛔ ⚠️ THIS did not work to fix the "first load" problem
 Promise.all(
-  Array.from(document.images)
-    .filter(img => !img.complete)
-    .map(
-      img =>
-        new Promise(resolve => {
-          img.onload = img.onerror = resolve
-        })
-    )
+  Array.from(document.images).map(
+    img =>
+      new Promise(resolve => {
+        img.onload = img.onerror = resolve;
+      })
+  )
 ).then(() => {
-  console.log('images finished loading')
-  init()
+  console.log("images finished loading");
+  init();
 })
