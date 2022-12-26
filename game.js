@@ -5,17 +5,41 @@ const canvas = /** @type {HTMLCanvasElement} */ (
 canvas.width = canvas.clientWidth
 canvas.height = canvas.clientHeight
 const context = canvas.getContext('2d')
+// <------------------- ⚠️⚠️ ⬆️ UNDER CONSTRUCTION ⬆️ ⚠️⚠️ ------------------->
+// ✅ This solution works, how to translate to game map
+const loadImage = src =>
+  new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => resolve(img)
+    img.onerror = reject
+    img.src = src
+  })
+const typeToImageMap = {
+  grassTile: './assets/grass_tile_16x16.png',
+  dirtTile: './assets/dirt_tile_16x16.png',
+  treeTile: './assets/tree_tile_16x16.png',
+  houseImage:'./assets/house_32x32.png'
+}
+Promise.all(Object.values(typeToImageMap).map(loadImage)).then(images => {
+  const canvas = document.createElement('canvas')
+  document.body.appendChild(canvas)
+  const ctx = canvas.getContext('2d')
+  images.forEach((image, i) =>
+    ctx.drawImage(image, i * 16, 0, image.width, image.height)
+  )
+})
 
+// <------------------- ⚠️⚠️ ⬆️ UNDER CONSTRUCTION ⬆️ ⚠️⚠️ ------------------->
 // 🌍 Global variables
 const grassTile = new Image()
 const dirtTile = new Image()
 const treeTile = new Image()
-const houseImage32x32 = new Image()
+const houseImage = new Image()
 // loadImages()
 grassTile.src = './assets/grass_tile_16x16.png'
 dirtTile.src = './assets/dirt_tile_16x16.png'
 treeTile.src = './assets/tree_tile_16x16.png'
-houseImage32x32.src = './assets/house_32x32.png'
+houseImage.src = './assets/house_32x32.png'
 const tileXPixels = 16 // pixels per tile horizontal
 const tileYPixels = 16 // pixels per tile vertical
 // determine the # of x/y tiles for the given canvas size
@@ -64,7 +88,7 @@ const drawTiles = tiles => {
 const drawHouse = tiles => {
   xTileHouse = Math.floor(canvas.width * 0.5)
   yTileHouse = Math.floor(canvas.height * 0.5)
-  context.drawImage(houseImage32x32, xTileHouse, yTileHouse)
+  context.drawImage(houseImage, xTileHouse, yTileHouse)
 }
 // 🔥 Game loop
 const loop = () => {}
@@ -78,11 +102,11 @@ Promise.all(
   Array.from(document.images).map(
     img =>
       new Promise(resolve => {
-        img.onload = img.onerror = resolve;
+        img.onload = img.onerror = resolve
       })
   )
 ).then(() => {
-  console.log("images finished loading");
-  init();
+  console.log('images finished loading')
+  init()
 })
 // }
