@@ -11,6 +11,7 @@ const grassTile = new Image()
 const dirtTile = new Image()
 const treeTile = new Image()
 const houseImage32x32 = new Image()
+loadImages()
 grassTile.src = './assets/grass_tile_16x16.png'
 dirtTile.src = './assets/dirt_tile_16x16.png'
 treeTile.src = './assets/tree_tile_16x16.png'
@@ -72,6 +73,7 @@ const loop = () => {}
 // 🖼️ Loading all images with a promise
 // https://stackoverflow.com/questions/11071314/javascript-execute-after-all-images-have-loaded
 // ⛔ ⚠️ THIS did not work to fix the "first load" problem
+const loadImages = () => {
 Promise.all(
   Array.from(document.images).map(
     img =>
@@ -83,3 +85,4 @@ Promise.all(
   console.log("images finished loading");
   init();
 })
+}
